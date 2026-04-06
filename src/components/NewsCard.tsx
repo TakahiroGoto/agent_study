@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ExternalLink } from "lucide-react";
 import type { NewsItem } from "@/data/mockData";
 import { CategoryBadge } from "./CategoryBadge";
@@ -32,7 +33,7 @@ export function NewsCard({ item, index }: { item: NewsItem; index: number }) {
 
           {/* Title */}
           <h2 className="mb-3 text-[15px] font-medium leading-snug text-[#d8d8d8] group-hover:text-white transition-colors duration-200 tracking-tight">
-            <a href={item.url}>{item.title}</a>
+            <Link href={`/news/${item.id}`}>{item.title}</Link>
           </h2>
 
           {/* Summary */}
@@ -50,12 +51,12 @@ export function NewsCard({ item, index }: { item: NewsItem; index: number }) {
                 #{tag}
               </span>
             ))}
-            <a
-              href={item.url}
+            <Link
+              href={`/news/${item.id}`}
               className="ml-auto font-mono text-[10px] text-[#303030] hover:text-[#d4ff00] transition-colors flex items-center gap-1.5 tracking-wider"
             >
-              Read <ExternalLink className="h-2.5 w-2.5" />
-            </a>
+              Detail <ExternalLink className="h-2.5 w-2.5" />
+            </Link>
           </div>
         </div>
       </div>
