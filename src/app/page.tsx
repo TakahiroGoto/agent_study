@@ -33,25 +33,25 @@ export default function Home() {
       <TickerBar tags={trendingTags} />
 
       {/* Main layout */}
-      <div className="mx-auto max-w-6xl px-6 py-12">
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1fr_260px]">
+      <div className="mx-auto max-w-6xl px-4 py-8 md:px-6 md:py-12">
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1fr_260px]">
 
           {/* News list */}
           <div>
             {/* Section header */}
-            <div className="mb-6 flex items-center justify-between">
-              <div className="flex items-center gap-4">
+            <div className="mb-4 flex items-center justify-between gap-4">
+              <div className="flex items-center gap-3 shrink-0">
                 <span className="font-mono text-[10px] tracking-[0.4em] text-[#d4ff00] uppercase">
                   Today
                 </span>
-                <div className="w-8 border-t border-[#1a1a1a]" />
+                <div className="w-6 border-t border-[#1a1a1a]" />
               </div>
-              {/* Category filter */}
-              <div className="flex gap-4">
+              {/* Category filter — horizontally scrollable on mobile */}
+              <div className="flex gap-4 overflow-x-auto scrollbar-none pb-1">
                 {categories.map((cat) => (
                   <button
                     key={cat}
-                    className="font-mono text-[10px] tracking-wider text-[#2e2e2e] uppercase hover:text-[#e8e8e8] transition-colors duration-200"
+                    className="font-mono text-[10px] tracking-wider text-[#2e2e2e] uppercase hover:text-[#e8e8e8] transition-colors duration-200 whitespace-nowrap shrink-0"
                   >
                     {cat}
                   </button>

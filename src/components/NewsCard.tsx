@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { ExternalLink } from "lucide-react";
 import type { NewsItem } from "@/data/mockData";
 import { CategoryBadge } from "./CategoryBadge";
 
@@ -14,17 +13,17 @@ const borderColors: Record<string, string> = {
 export function NewsCard({ item, index }: { item: NewsItem; index: number }) {
   return (
     <article
-      className={`group border-b border-[#141414] border-l-2 ${borderColors[item.category]} pl-5 py-7 transition-colors duration-200 hover:bg-[#0c0c0c]`}
+      className={`group border-b border-[#141414] border-l-2 ${borderColors[item.category]} pl-4 py-6 transition-colors duration-200 hover:bg-[#0c0c0c] md:pl-5 md:py-7`}
     >
-      <div className="flex items-start justify-between gap-6">
-        {/* Index number */}
-        <span className="font-mono text-[11px] text-[#242424] mt-0.5 shrink-0 w-6 text-right">
+      <div className="flex items-start gap-4">
+        {/* Index number — hidden on very small screens */}
+        <span className="hidden sm:block font-mono text-[11px] text-[#242424] mt-0.5 shrink-0 w-5 text-right">
           {String(index + 1).padStart(2, "0")}
         </span>
 
         <div className="flex-1 min-w-0">
           {/* Meta row */}
-          <div className="mb-3 flex items-center gap-4">
+          <div className="mb-2 flex items-center gap-3 flex-wrap">
             <CategoryBadge category={item.category} />
             <span className="font-mono text-[10px] text-[#2e2e2e] tracking-wider">
               {item.source}
@@ -32,17 +31,17 @@ export function NewsCard({ item, index }: { item: NewsItem; index: number }) {
           </div>
 
           {/* Title */}
-          <h2 className="mb-3 text-[15px] font-medium leading-snug text-[#d8d8d8] group-hover:text-white transition-colors duration-200 tracking-tight">
+          <h2 className="mb-2 text-[15px] font-semibold leading-snug text-[#d8d8d8] group-hover:text-white transition-colors duration-200 tracking-tight md:text-[15px]">
             <Link href={`/news/${item.id}`}>{item.title}</Link>
           </h2>
 
           {/* Summary */}
-          <p className="text-[13px] leading-relaxed text-[#404040] line-clamp-2">
+          <p className="text-[13px] leading-relaxed text-[#484848] line-clamp-2">
             {item.summary}
           </p>
 
-          {/* Tags */}
-          <div className="mt-4 flex items-center gap-4">
+          {/* Tags + Detail link */}
+          <div className="mt-3 flex items-center gap-3 flex-wrap">
             {item.tags.map((tag) => (
               <span
                 key={tag}
@@ -53,9 +52,9 @@ export function NewsCard({ item, index }: { item: NewsItem; index: number }) {
             ))}
             <Link
               href={`/news/${item.id}`}
-              className="ml-auto font-mono text-[10px] text-[#303030] hover:text-[#d4ff00] transition-colors flex items-center gap-1.5 tracking-wider"
+              className="ml-auto font-mono text-[11px] text-[#d4ff00] hover:text-white transition-colors tracking-wider"
             >
-              Detail <ExternalLink className="h-2.5 w-2.5" />
+              Detail →
             </Link>
           </div>
         </div>

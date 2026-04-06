@@ -24,7 +24,7 @@ export default async function NewsDetailPage({ params }: { params: Promise<{ id:
   return (
     <main className="bg-[#080808] min-h-screen">
       {/* Top bar */}
-      <div className="border-b border-[#1a1a1a] px-6 py-4">
+      <div className="border-b border-[#1a1a1a] px-4 py-4 md:px-6">
         <div className="mx-auto max-w-3xl flex items-center gap-3">
           <Link
             href="/"
@@ -39,7 +39,7 @@ export default async function NewsDetailPage({ params }: { params: Promise<{ id:
         </div>
       </div>
 
-      <article className="mx-auto max-w-3xl px-6 py-14">
+      <article className="mx-auto max-w-3xl px-4 py-10 md:px-6 md:py-14">
 
         {/* Meta */}
         <div className="mb-6 flex items-center gap-4">
@@ -49,7 +49,7 @@ export default async function NewsDetailPage({ params }: { params: Promise<{ id:
         </div>
 
         {/* Title */}
-        <h1 className="mb-10 text-[clamp(20px,3vw,30px)] font-bold leading-snug tracking-tight text-[#e8e8e8]">
+        <h1 className="mb-8 text-[20px] font-bold leading-snug tracking-tight text-[#e8e8e8] md:text-[clamp(20px,3vw,30px)] md:mb-10">
           {item.title}
         </h1>
 
