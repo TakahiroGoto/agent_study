@@ -1,61 +1,118 @@
 import { HeroSection } from "@/components/HeroSection";
 import { NewsCard } from "@/components/NewsCard";
 import { TagCloud } from "@/components/TagCloud";
+import { TickerBar } from "@/components/TickerBar";
 import { SubscribeForm } from "@/components/SubscribeForm";
 import { mockDigest, trendingTags } from "@/data/mockData";
 import type { Category } from "@/data/mockData";
 
 const categories: Category[] = ["LLM", "Multi-Agent", "Tools", "Papers", "Industry"];
 
+const categoryDotColors: Record<Category, string> = {
+  LLM: "bg-[#7c6af5]",
+  "Multi-Agent": "bg-[#4f9cf5]",
+  Tools: "bg-[#4ff5a0]",
+  Papers: "bg-[#f5c24f]",
+  Industry: "bg-[#f54f7c]",
+};
+
 export default function Home() {
+  const categoryCounts = categories.map((cat) => ({
+    cat,
+    count: mockDigest.items.filter((i) => i.category === cat).length,
+  }));
+
   return (
-    <main className="mx-auto max-w-5xl px-4 py-8 space-y-8">
+    <main className="bg-[#080808] min-h-screen">
       <HeroSection
         date={mockDigest.date}
         keyTakeaway={mockDigest.keyTakeaway}
         itemCount={mockDigest.items.length}
       />
 
-      <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
-        {/* News list */}
-        <div className="lg:col-span-2 space-y-4">
-          <div className="flex items-center justify-between flex-wrap gap-2">
-            <h2 className="text-lg font-bold text-gray-900">今日のニュース</h2>
-            <div className="flex gap-2 flex-wrap">
-              {categories.map((cat) => (
-                <button
-                  key={cat}
-                  className="rounded-full border border-gray-200 bg-white px-3 py-1 text-xs text-gray-600 hover:border-blue-400 hover:text-blue-600 transition-colors"
-                >
-                  {cat}
-                </button>
-              ))}
+      <TickerBar tags={trendingTags} />
+
+      {/* Main layout */}
+      <div className="mx-auto max-w-6xl px-6 py-12">
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1fr_260px]">
+
+          {/* News list */}
+          <div>
+            {/* Section header */}
+            <div className="mb-6 flex items-center justify-between">
+              <div className="flex items-center gap-4">
+                <span className="font-mono text-[10px] tracking-[0.4em] text-[#d4ff00] uppercase">
+                  Today
+                </span>
+                <div className="w-8 border-t border-[#1a1a1a]" />
+              </div>
+              {/* Category filter */}
+              <div className="flex gap-4">
+                {categories.map((cat) => (
+                  <button
+                    key={cat}
+                    className="font-mono text-[10px] tracking-wider text-[#2e2e2e] uppercase hover:text-[#e8e8e8] transition-colors duration-200"
+                  >
+                    {cat}
+                  </button>
+                ))}
+              </div>
             </div>
+
+            {/* Divider */}
+            <div className="border-t border-[#1a1a1a] mb-0" />
+
+            {/* Items */}
+            {mockDigest.items.map((item, i) => (
+              <NewsCard key={item.id} item={item} index={i} />
+            ))}
           </div>
 
-          {mockDigest.items.map((item) => (
-            <NewsCard key={item.id} item={item} />
-          ))}
-        </div>
+          {/* Sidebar */}
+          <aside className="space-y-6">
+            <TagCloud tags={trendingTags} />
 
-        {/* Sidebar */}
-        <div className="space-y-4">
-          <TagCloud tags={trendingTags} />
-
-          <div className="rounded-xl border border-gray-200 bg-white p-5 shadow-sm">
-            <h3 className="mb-3 text-sm font-semibold text-gray-700">カテゴリ別件数（今日）</h3>
-            <ul className="space-y-2">
-              {categories.map((cat) => {
-                const count = mockDigest.items.filter((i) => i.category === cat).length;
-                return (
-                  <li key={cat} className="flex items-center justify-between text-sm">
-                    <span className="text-gray-600">{cat}</span>
-                    <span className="font-medium text-gray-900">{count}</span>
+            {/* Category breakdown */}
+            <div className="border border-[#1a1a1a] p-5 bg-[#0a0a0a]">
+              <div className="mb-5 flex items-center gap-3">
+                <span className="font-mono text-[10px] tracking-[0.4em] text-[#d4ff00] uppercase">
+                  Index
+                </span>
+                <div className="flex-1 border-t border-[#1a1a1a]" />
+              </div>
+              <ul className="space-y-3">
+                {categoryCounts.map(({ cat, count }) => (
+                  <li key={cat} className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <div className={`h-1.5 w-1.5 rounded-full ${categoryDotColors[cat]}`} />
+                      <span className="font-mono text-[10px] tracking-wider text-[#404040] uppercase">
+                        {cat}
+                      </span>
+                    </div>
+                    <span className="font-mono text-[11px] text-[#303030]">
+                      {String(count).padStart(2, "0")}
+                    </span>
                   </li>
-                );
-              })}
-            </ul>
-          </div>
+                ))}
+              </ul>
+            </div>
+
+            {/* Decorative element - large number */}
+            <div className="border border-[#1a1a1a] p-5 bg-[#0a0a0a] overflow-hidden relative">
+              <div className="absolute bottom-0 right-0 display-num text-[80px] text-[#111111] leading-none select-none pointer-events-none">
+                AI
+              </div>
+              <span className="font-mono text-[10px] tracking-[0.4em] text-[#d4ff00] uppercase block mb-3">
+                Since
+              </span>
+              <span className="font-mono text-[11px] text-[#2e2e2e]">2026.04.01</span>
+              <div className="mt-4 border-t border-[#141414] pt-4">
+                <span className="font-mono text-[10px] text-[#242424] tracking-wider">
+                  AGENT DAILY v1.0
+                </span>
+              </div>
+            </div>
+          </aside>
         </div>
       </div>
 

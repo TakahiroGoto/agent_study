@@ -1,26 +1,89 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: #080808;
+  --surface: #0f0f0f;
+  --surface-2: #141414;
+  --border: #1a1a1a;
+  --border-2: #262626;
+  --text-primary: #e8e8e8;
+  --text-secondary: #484848;
+  --text-muted: #282828;
+  --accent: #d4ff00;
+  --accent-dim: rgba(212, 255, 0, 0.08);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html, body {
+  background: var(--bg);
+  color: var(--text-primary);
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Dot grid texture */
+.dot-grid {
+  background-image: radial-gradient(circle, #1e1e1e 1px, transparent 1px);
+  background-size: 28px 28px;
+  pointer-events: none;
+}
+
+/* Monospace utility */
+.font-mono {
+  font-family: 'Courier New', 'Menlo', 'Monaco', monospace;
+}
+
+/* Ticker animation */
+@keyframes ticker {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.ticker-track {
+  animation: ticker 28s linear infinite;
+}
+.ticker-track:hover {
+  animation-play-state: paused;
+}
+
+/* Horizontal scan line hover effect */
+@keyframes scan {
+  0%   { top: -2px; }
+  100% { top: 100%; }
+}
+
+/* Number display - large decorative */
+.display-num {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 0.85;
+}
+
+/* Category left-border colors */
+.cat-llm        { border-left-color: #7c6af5; }
+.cat-multiagent { border-left-color: #4f9cf5; }
+.cat-tools      { border-left-color: #4ff5a0; }
+.cat-papers     { border-left-color: #f5c24f; }
+.cat-industry   { border-left-color: #f54f7c; }
+
+/* Subtle line animation on focus */
+.underline-anim {
+  position: relative;
+}
+.underline-anim::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--accent);
+  transition: width 0.3s ease;
+}
+.underline-anim:hover::after {
+  width: 100%;
 }

@@ -1,29 +1,40 @@
 import Link from "next/link";
-import { Bot } from "lucide-react";
 
 export function Navbar() {
   return (
-    <header className="sticky top-0 z-50 border-b border-gray-200 bg-white/80 backdrop-blur-sm">
-      <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
-        <Link href="/" className="flex items-center gap-2 font-bold text-gray-900 hover:text-blue-600 transition-colors">
-          <Bot className="h-5 w-5 text-blue-600" />
-          <span>Agent Daily</span>
+    <header className="sticky top-0 z-50 border-b border-[#1a1a1a] bg-[#080808]">
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+        {/* Logo */}
+        <Link href="/" className="group flex items-baseline gap-3">
+          <span className="font-mono text-xs tracking-[0.4em] text-[#484848] uppercase">
+            Agent
+          </span>
+          <span className="text-lg font-black tracking-tight text-[#e8e8e8] group-hover:text-[#d4ff00] transition-colors duration-300">
+            DAILY
+          </span>
         </Link>
-        <nav className="flex items-center gap-6">
-          <Link href="/" className="text-sm text-gray-600 hover:text-gray-900 transition-colors">
-            Today
-          </Link>
-          <Link href="/archive" className="text-sm text-gray-600 hover:text-gray-900 transition-colors">
-            Archive
-          </Link>
-          <Link href="/topics/multi-agent" className="text-sm text-gray-600 hover:text-gray-900 transition-colors">
-            Topics
-          </Link>
+
+        {/* Nav */}
+        <nav className="flex items-center gap-8">
+          {[
+            { href: "/", label: "Today" },
+            { href: "/archive", label: "Archive" },
+            { href: "/topics/multi-agent", label: "Topics" },
+          ].map(({ href, label }) => (
+            <Link
+              key={href}
+              href={href}
+              className="font-mono text-[11px] tracking-[0.25em] text-[#484848] uppercase underline-anim hover:text-[#e8e8e8] transition-colors duration-200"
+            >
+              {label}
+            </Link>
+          ))}
+
           <a
             href="#subscribe"
-            className="rounded-full bg-blue-600 px-4 py-1.5 text-sm font-medium text-white hover:bg-blue-700 transition-colors"
+            className="font-mono text-[11px] tracking-[0.2em] text-[#080808] bg-[#d4ff00] px-4 py-2 uppercase hover:bg-white transition-colors duration-200"
           >
-            購読する
+            Subscribe
           </a>
         </nav>
       </div>

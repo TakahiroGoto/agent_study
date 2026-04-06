@@ -37,7 +37,7 @@ export default async function TopicPage({ params }: { params: Promise<{ slug: st
 
       <div className="space-y-4">
         {items.length > 0 ? (
-          items.map((item) => <NewsCard key={item.id} item={item} />)
+          items.map((item, i) => <NewsCard key={item.id} item={item} index={i} />)
         ) : (
           <p className="text-gray-500">このカテゴリのニュースはまだありません。</p>
         )}
