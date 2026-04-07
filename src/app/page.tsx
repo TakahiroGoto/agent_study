@@ -5,6 +5,7 @@ import { TickerBar } from "@/components/TickerBar";
 import { SubscribeForm } from "@/components/SubscribeForm";
 import { mockDigest, trendingTags } from "@/data/mockData";
 import type { Category } from "@/data/mockData";
+import { getCuratedItems } from "@/lib/utils";
 
 const categories: Category[] = ["LLM", "Multi-Agent", "Tools", "Papers", "Industry"];
 
@@ -17,9 +18,10 @@ const categoryDotColors: Record<Category, string> = {
 };
 
 export default function Home() {
+  const items = getCuratedItems(mockDigest.items);
   const categoryCounts = categories.map((cat) => ({
     cat,
-    count: mockDigest.items.filter((i) => i.category === cat).length,
+    count: items.filter((i) => i.category === cat).length,
   }));
 
   return (
@@ -27,7 +29,7 @@ export default function Home() {
       <HeroSection
         date={mockDigest.date}
         keyTakeaway={mockDigest.keyTakeaway}
-        itemCount={mockDigest.items.length}
+        itemCount={items.length}
       />
 
       <TickerBar tags={trendingTags} />
@@ -63,7 +65,7 @@ export default function Home() {
             <div className="border-t border-[#1a1a1a] mb-0" />
 
             {/* Items */}
-            {mockDigest.items.map((item, i) => (
+            {items.map((item, i) => (
               <NewsCard key={item.id} item={item} index={i} />
             ))}
           </div>

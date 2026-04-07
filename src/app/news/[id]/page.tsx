@@ -93,10 +93,41 @@ export default async function NewsDetailPage({ params }: { params: Promise<{ id:
 
         {/* ── 04 Detail ── */}
         <Section index="04" label="Detail">
-          <p className="text-[14px] leading-[1.9] text-[#606060]">
-            {item.detail}
-          </p>
+          {item.detail.split("\n\n").map((para, i) => (
+            <p key={i} className="mb-5 text-[14px] leading-[1.9] text-[#606060] last:mb-0">
+              {para}
+            </p>
+          ))}
         </Section>
+
+        {/* ── 05 Related Sources ── */}
+        {item.relatedSources.length > 0 && (
+          <Section index="05" label="Related Sources">
+            <ul className="space-y-3">
+              {item.relatedSources.map((src, i) => (
+                <li key={i} className="flex items-start gap-4 border-b border-[#141414] pb-3 last:border-0 last:pb-0">
+                  <span className="font-mono text-[10px] text-[#d4ff00] mt-0.5 shrink-0">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <div className="flex-1 min-w-0">
+                    <a
+                      href={src.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[13px] font-medium text-[#707070] hover:text-[#e8e8e8] transition-colors leading-snug block"
+                    >
+                      {src.title}
+                    </a>
+                    <span className="font-mono text-[10px] text-[#2e2e2e] tracking-wider mt-1 block">
+                      {src.source}
+                    </span>
+                  </div>
+                  <span className="font-mono text-[10px] text-[#242424] hover:text-[#d4ff00] transition-colors shrink-0">→</span>
+                </li>
+              ))}
+            </ul>
+          </Section>
+        )}
 
         {/* Tags */}
         <div className="mt-10 flex flex-wrap gap-4 border-t border-[#1a1a1a] pt-8">
