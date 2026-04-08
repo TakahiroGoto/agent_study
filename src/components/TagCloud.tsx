@@ -22,11 +22,11 @@ export function TagCloud({ tags }: TagCloudProps) {
               {/* Bar */}
               <div className="h-px flex-1 bg-[#1a1a1a]">
                 <div
-                  className="h-full bg-[#2a2a2a] group-hover:bg-[#d4ff00] transition-colors duration-300"
+                  className="h-full bg-[#3a3a3a] group-hover:bg-[#d4ff00] transition-colors duration-300"
                   style={{ width: `${ratio * 100}%` }}
                 />
               </div>
-              <span className="font-mono text-[10px] tracking-wider text-[#404040] group-hover:text-[#e8e8e8] transition-colors duration-200 w-24 text-right uppercase">
+              <span className="font-mono text-[10px] tracking-wider text-[#707070] group-hover:text-[#e8e8e8] transition-colors duration-200 w-24 text-right uppercase">
                 {tag}
               </span>
               <span className="font-mono text-[10px] text-[#242424] w-4 text-right">

@@ -28,7 +28,7 @@ export interface DailyDigest {
 }
 
 export const mockDigest: DailyDigest = {
-  date: "2026-04-06",
+  date: "2026-04-08",
   keyTakeaway:
     "OpenAIがエージェントフレームワーク新版を発表。複数エージェントの協調動作が大幅に改善され、実用段階へ。",
   items: [
@@ -40,7 +40,7 @@ export const mockDigest: DailyDigest = {
       source: "OpenAI Blog",
       url: "https://openai.com",
       category: "Multi-Agent",
-      publishedAt: "2026-04-06T08:00:00Z",
+      publishedAt: "2026-04-08T08:00:00Z",
       tags: ["OpenAI", "Multi-Agent", "Framework"],
       keyPoints: [
         "レイテンシが前バージョン比40%改善。実用ユースケースへの展開が加速する",
@@ -70,7 +70,7 @@ export const mockDigest: DailyDigest = {
       source: "DeepMind Research",
       url: "https://deepmind.google",
       category: "Papers",
-      publishedAt: "2026-04-06T06:30:00Z",
+      publishedAt: "2026-04-08T06:30:00Z",
       tags: ["Google", "Memory", "LongContext"],
       keyPoints: [
         "外部ベクトルDBと内部KVキャッシュを組み合わせたハイブリッドメモリアーキテクチャを提案",
@@ -100,7 +100,7 @@ export const mockDigest: DailyDigest = {
       source: "Anthropic News",
       url: "https://anthropic.com",
       category: "Tools",
-      publishedAt: "2026-04-06T05:00:00Z",
+      publishedAt: "2026-04-08T05:00:00Z",
       tags: ["Anthropic", "ComputerUse", "API"],
       keyPoints: [
         "Computer Use APIがGA（一般提供）に移行。ベータ期間中の不安定さが大幅に改善",
@@ -130,7 +130,7 @@ export const mockDigest: DailyDigest = {
       source: "LangChain Blog",
       url: "https://langchain.com",
       category: "Tools",
-      publishedAt: "2026-04-05T22:00:00Z",
+      publishedAt: "2026-04-08T02:00:00Z",
       tags: ["LangChain", "LangGraph", "Orchestration"],
       keyPoints: [
         "グラフUIでエージェントの実行フローをリアルタイム可視化。デバッグ時間が平均60%短縮",
@@ -160,7 +160,7 @@ export const mockDigest: DailyDigest = {
       source: "MIT CSAIL",
       url: "https://csail.mit.edu",
       category: "Papers",
-      publishedAt: "2026-04-05T18:00:00Z",
+      publishedAt: "2026-04-07T18:00:00Z",
       tags: ["MIT", "Hallucination", "Research"],
       keyPoints: [
         "ツール呼び出し直前に「検証エージェント」を自動挿入し、引数の妥当性をチェック",
@@ -190,7 +190,7 @@ export const mockDigest: DailyDigest = {
       source: "Microsoft Azure Blog",
       url: "https://azure.microsoft.com",
       category: "Industry",
-      publishedAt: "2026-04-05T15:00:00Z",
+      publishedAt: "2026-04-07T15:00:00Z",
       tags: ["Microsoft", "Azure", "Enterprise"],
       keyPoints: [
         "Azure Active Directoryとのネイティブ統合により、既存の権限管理をそのまま適用可能",

@@ -25,18 +25,18 @@ export function NewsCard({ item, index }: { item: NewsItem; index: number }) {
           {/* Meta row */}
           <div className="mb-2 flex items-center gap-3 flex-wrap">
             <CategoryBadge category={item.category} />
-            <span className="font-mono text-[10px] text-[#2e2e2e] tracking-wider">
+            <span className="font-mono text-[10px] text-[#606060] tracking-wider">
               {item.source}
             </span>
           </div>
 
           {/* Title */}
-          <h2 className="mb-2 text-[15px] font-semibold leading-snug text-[#d8d8d8] group-hover:text-white transition-colors duration-200 tracking-tight md:text-[15px]">
+          <h2 className="mb-2 text-[15px] font-semibold leading-snug text-[#e8e8e8] group-hover:text-white transition-colors duration-200 tracking-tight">
             <Link href={`/news/${item.id}`}>{item.title}</Link>
           </h2>
 
           {/* Summary */}
-          <p className="text-[13px] leading-relaxed text-[#484848] line-clamp-2">
+          <p className="text-[13px] leading-relaxed text-[#888888] line-clamp-2">
             {item.summary}
           </p>
 
@@ -45,7 +45,7 @@ export function NewsCard({ item, index }: { item: NewsItem; index: number }) {
             {item.tags.map((tag) => (
               <span
                 key={tag}
-                className="font-mono text-[10px] text-[#303030] tracking-wider"
+                className="font-mono text-[10px] text-[#505050] tracking-wider"
               >
                 #{tag}
               </span>

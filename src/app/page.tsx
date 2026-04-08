@@ -87,11 +87,11 @@ export default function Home() {
                   <li key={cat} className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <div className={`h-1.5 w-1.5 rounded-full ${categoryDotColors[cat]}`} />
-                      <span className="font-mono text-[10px] tracking-wider text-[#404040] uppercase">
+                      <span className="font-mono text-[10px] tracking-wider text-[#888888] uppercase">
                         {cat}
                       </span>
                     </div>
-                    <span className="font-mono text-[11px] text-[#303030]">
+                    <span className="font-mono text-[11px] text-[#686868]">
                       {String(count).padStart(2, "0")}
                     </span>
                   </li>
